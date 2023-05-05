@@ -15,12 +15,20 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
+          name: build dependencies
+          command: bundle install
+
+      - run:
+          name: "build the jekyll site"
+          command: bundle exec jekyll
+
+      - run:
+          name: Print the current time
+          command: date
 
 # Orchestrate jobs using workflows
-# See: https://circleci.com/docs/configuration-reference/#workflows
-workflows:
-  say-hello-workflow:
-    jobs:
-      - say-hello
+# # See: https://circleci.com/docs/configuration-reference/#workflows
+# workflows:
+#   say-hello-workflow:
+#     jobs:
+#       - say-hello
